@@ -29,15 +29,12 @@ namespace eGift.WebAPI.Models
         #region Not Mapped
 
         [NotMapped]
-        [Column(TypeName = "VARCHAR(50)")]
         public string CountryName { get; set; }
 
         [NotMapped]
-        [Column(TypeName = "VARCHAR(50)")]
         public string StateName { get; set; }
 
         [NotMapped]
-        [Column(TypeName = "VARCHAR(50)")]
         public string CityName { get; set; }
 
         #endregion Not Mapped
