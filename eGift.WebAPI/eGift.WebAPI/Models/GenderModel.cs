@@ -15,7 +15,7 @@ namespace eGift.WebAPI.Models
         public string GenderName { get; set; }
 
         [Column(TypeName = "VARCHAR(500)")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         #endregion Data Models
     }
