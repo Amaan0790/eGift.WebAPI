@@ -21,10 +21,10 @@ namespace eGift.WebAPI.Models
         public int Quantity { get; set; }
 
         [Column(TypeName = "DECIMAL(18,2)")]
-        public decimal Discount { get; set; }
+        public decimal? Discount { get; set; }
 
         [Column(TypeName = "DECIMAL(18,2)")]
-        public decimal Tax { get; set; }
+        public decimal? Tax { get; set; }
 
         [Column(TypeName = "DECIMAL(18,2)")]
         public decimal NetAmount { get; set; }
