@@ -5,7 +5,14 @@ using Microsoft.EntityFrameworkCore;
 // Add services to the container.
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        // Optional: Configure JSON options as needed
+        options.JsonSerializerOptions.PropertyNamingPolicy = null; // Use camelCase if needed
+    });
+
 
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

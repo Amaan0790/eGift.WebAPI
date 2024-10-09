@@ -35,7 +35,7 @@ namespace eGift.WebAPI.Models
         #region Not Mapped
 
         [NotMapped]
-        public string ConfirmPassword { get; set; }
+        public string? ConfirmPassword { get; set; }
 
         #endregion Not Mapped
     }
