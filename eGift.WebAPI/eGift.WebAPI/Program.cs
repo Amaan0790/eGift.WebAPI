@@ -2,6 +2,7 @@ using eGift.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 #region Configure Services
+
 // Add services to the container.
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,6 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.PropertyNamingPolicy = null; // Use camelCase if needed
     });
 
-
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -23,6 +23,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
 #endregion
 
 #region Configure
@@ -41,4 +42,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
 #endregion

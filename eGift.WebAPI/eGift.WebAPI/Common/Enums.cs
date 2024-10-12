@@ -3,6 +3,7 @@
 namespace eGift.WebAPI.Common
 {
     #region General
+
     public enum Gender
     {
         [Description("Male")]
@@ -11,9 +12,11 @@ namespace eGift.WebAPI.Common
         [Description("Female")]
         Female = 2
     }
+
     #endregion
 
     #region Project Specific
+
     public enum Role
     {
         [Description("Employee")]
@@ -22,5 +25,6 @@ namespace eGift.WebAPI.Common
         [Description("Customer")]
         Customer = 2
     }
+
     #endregion
 }

@@ -8,7 +8,7 @@ namespace eGift.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeController : ControllerBase
+    public class CustomerController : ControllerBase
     {
         #region Variables
 
@@ -18,72 +18,72 @@ namespace eGift.WebAPI.Controllers
 
         #region Constructors
 
-        public EmployeeController(ApplicationDbContext context)
+        public CustomerController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         #endregion
 
-        #region Employee Default CRUD Actions
+        #region Customer Default CRUD Actions
 
-        // GET: api/<EmployeeController>
+        // GET: api/<CustomerController>
         [HttpGet]
-        public List<EmployeeModel> Get()
+        public List<CustomerModel> Get()
         {
             // Set command timeout for this specific query (e.g., 5 minutes)
             _context.Database.SetCommandTimeout(TimeSpan.FromSeconds(300));
 
-            var list = _context.Employee.Where(x => !x.IsDeleted).ToList();
+            var list = _context.Customer.Where(x => !x.IsDeleted).ToList();
             return list;
         }
 
-        // GET api/<EmployeeController>/5
+        // GET api/<CustomerController>/5
         [HttpGet("{id}")]
-        public EmployeeModel Get(int id)
+        public CustomerModel Get(int id)
         {
-            var model = _context.Employee.Find(id);
+            var model = _context.Customer.Find(id);
             return model;
         }
 
-        // POST api/<EmployeeController>
+        // POST api/<CustomerController>
         [HttpPost]
-        public EmployeeModel Post([FromBody] EmployeeModel model)
+        public CustomerModel Post([FromBody] CustomerModel model)
         {
             if (model.ID == 0)
             {
-                _context.Employee.Add(model);
+                _context.Customer.Add(model);
                 _context.SaveChanges();
                 return model;
             }
             return null;
         }
 
-        // PUT api/<EmployeeController>/5
+        // PUT api/<CustomerController>/5
         [HttpPut("{id}")]
-        public EmployeeModel Put(int id, [FromBody] EmployeeModel model)
+        public CustomerModel Put(int id, [FromBody] CustomerModel model)
         {
             if (model.ID > 0)
             {
                 model.UpdatedDate = DateTime.Now;
-                _context.Employee.Update(model);
+                _context.Customer.Update(model);
                 _context.SaveChanges();
                 return model;
             }
             return null;
         }
 
-        // DELETE api/<EmployeeController>/5
+        // DELETE api/<CustomerController>/5
         [HttpDelete("{id}")]
         public int Delete(int id, int loginUserId)
         {
-            var model = _context.Employee.Where(x => !x.IsDeleted && x.ID == id).FirstOrDefault();
+            var model = _context.Customer.Where(x => !x.IsDeleted && x.ID == id).FirstOrDefault();
             if (model != null)
             {
                 model.IsDeleted = true;
                 model.UpdatedDate = DateTime.Now;
                 model.UpdatedBy = loginUserId;
-                _context.Employee.Update(model);
+                _context.Customer.Update(model);
                 _context.SaveChanges();
                 return id;
             }

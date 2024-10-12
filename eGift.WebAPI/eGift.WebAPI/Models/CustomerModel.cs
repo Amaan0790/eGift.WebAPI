@@ -38,6 +38,7 @@ namespace eGift.WebAPI.Models
         public byte[]? ProfileImageData { get; set; }
 
         public int RoleId { get; set; }
+
         public bool IsDefault { get; set; } = false;
 
         #endregion Data Models
@@ -45,22 +46,22 @@ namespace eGift.WebAPI.Models
         #region Not Mapped
 
         [NotMapped]
-        public int Age { get; set; }
+        public int? Age { get; set; }
 
         [NotMapped]
-        public string AddressName { get; set; }
+        public string? AddressName { get; set; }
 
         [NotMapped]
-        public string GenderName { get; set; }
+        public string? GenderName { get; set; }
 
         [NotMapped]
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
         [NotMapped]
-        public string RoleName { get; set; }
+        public string? RoleName { get; set; }
 
-        [NotMapped]
-        public IFormFile ProfileImage { get; set; }
+        //[NotMapped]
+        //public IFormFile ProfileImage { get; set; }
 
         #endregion Not Mapped
     }

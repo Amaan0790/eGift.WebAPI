@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eGift.WebAPI.Models
 {
-    public class LoginModel 
+    public class LoginModel
     {
         #region Data Models
 

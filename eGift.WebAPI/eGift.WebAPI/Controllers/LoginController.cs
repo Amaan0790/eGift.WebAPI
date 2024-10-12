@@ -11,14 +11,18 @@ namespace eGift.WebAPI.Controllers
     public class LoginController : ControllerBase
     {
         #region Variables
+
         private readonly ApplicationDbContext _context;
+
         #endregion
 
         #region Constructors
+
         public LoginController(ApplicationDbContext context)
         {
             _context = context;
         }
+
         #endregion
 
         #region Default CRUD Actions
@@ -57,7 +61,7 @@ namespace eGift.WebAPI.Controllers
         public LoginModel Put(int id, [FromBody] LoginModel model)
         {
             if (model.ID > 0)
-            {                
+            {
                 _context.Login.Update(model);
                 _context.SaveChanges();
                 return model;
@@ -70,16 +74,31 @@ namespace eGift.WebAPI.Controllers
         public void Delete(int id)
         {
         }
+
         #endregion
 
         #region Get Employee Login Actions
+
         // GET api/<LoginController>/5
         [HttpGet("GetEmployeeLogin/{id}")]
         public LoginModel GetEmployeeLogin(int id)
         {
-            var model = _context.Login.Where(x => x.RefId == id && x.RefType== Role.Employee.ToString()).FirstOrDefault();
+            var model = _context.Login.Where(x => x.RefId == id && x.RefType == Role.Employee.ToString()).FirstOrDefault();
             return model;
         }
+
+        #endregion
+
+        #region Get Customer Login Actions
+
+        // GET api/<LoginController>/5
+        [HttpGet("GetCustomerLogin/{id}")]
+        public LoginModel GetCustomerLogin(int id)
+        {
+            var model = _context.Login.Where(x => x.RefId == id && x.RefType == Role.Customer.ToString()).FirstOrDefault();
+            return model;
+        }
+
         #endregion
     }
 }
