@@ -100,5 +100,36 @@ namespace eGift.WebAPI.Controllers
         }
 
         #endregion
+
+        #region Admin Employee Login Actions
+
+        // GET api/<LoginController>/AdminEmployeeLogin
+        [HttpGet("AdminEmployeeLogin")]
+        public LoginModel AdminEmployeeLogin(string userName, string password)
+        {
+            var model = _context.Login.Where(x => x.RefType == Role.Employee.ToString() && x.UserName == userName && x.Password == password).FirstOrDefault();
+            return model;
+        }
+
+        #endregion
+
+        #region Last Login Actions
+
+        // POST api/<LoginController>/UpdateLastLogin
+        [HttpPost("UpdateLastLogin")]
+        public LoginModel UpdateLastLogin([FromBody] LoginModel model)
+        {
+            var existingModel = _context.Login.Find(model.ID);
+            if (existingModel != null)
+            {
+                existingModel.LastLogInDate = existingModel.LogInDate;
+                existingModel.LogInDate = model.LogInDate;
+                _context.Login.Update(existingModel);
+                _context.SaveChanges();
+            }
+            return existingModel;
+        }
+
+        #endregion
     }
 }
