@@ -1,4 +1,5 @@
-﻿using eGift.WebAPI.Models;
+﻿using eGift.WebAPI.Common;
+using eGift.WebAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -90,6 +91,28 @@ namespace eGift.WebAPI.Controllers
             return 0;
         }
 
+        #endregion
+
+        #region Remote Validation Actions
+        // GET api/<LoginController>/VerifyUserName
+        [HttpGet("VerifyUserName")]
+        public bool VerifyUserName(int id, string userName)
+        {
+            var verifyLogin = _context.Login.Where(x => x.RefType == Role.Employee.ToString() && x.UserName == userName).FirstOrDefault();
+            if (verifyLogin != null)
+            {
+                var existingLogin = _context.Login.Where(x => x.RefType == Role.Employee.ToString() && x.RefId == id).FirstOrDefault();
+                if (existingLogin?.UserName == verifyLogin?.UserName)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         #endregion
     }
 }
