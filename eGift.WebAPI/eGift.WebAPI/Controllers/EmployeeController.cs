@@ -94,7 +94,8 @@ namespace eGift.WebAPI.Controllers
         #endregion
 
         #region Remote Validation Actions
-        // GET api/<LoginController>/VerifyUserName
+
+        // GET api/<EmployeeController>/VerifyUserName
         [HttpGet("VerifyUserName")]
         public bool VerifyUserName(int id, string userName)
         {
@@ -113,6 +114,7 @@ namespace eGift.WebAPI.Controllers
             }
             return false;
         }
+
         #endregion
     }
 }
