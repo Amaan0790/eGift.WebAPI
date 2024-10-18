@@ -99,10 +99,10 @@ namespace eGift.WebAPI.Controllers
         [HttpGet("VerifyUserName")]
         public bool VerifyUserName(int id, string userName)
         {
-            var verifyLogin = _context.Login.Where(x => x.RefType == Role.Employee.ToString() && x.UserName == userName).FirstOrDefault();
+            var verifyLogin = _context.Login.Where(x => (x.RefType == Role.Employee.ToString() || x.RefType == Role.Admin.ToString()) && x.UserName == userName).FirstOrDefault();
             if (verifyLogin != null)
             {
-                var existingLogin = _context.Login.Where(x => x.RefType == Role.Employee.ToString() && x.RefId == id).FirstOrDefault();
+                var existingLogin = _context.Login.Where(x => (x.RefType == Role.Employee.ToString() || x.RefType == Role.Admin.ToString()) && x.RefId == id).FirstOrDefault();
                 if (existingLogin?.UserName == verifyLogin?.UserName)
                 {
                     return false;

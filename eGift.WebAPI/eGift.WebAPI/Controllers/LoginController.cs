@@ -101,13 +101,13 @@ namespace eGift.WebAPI.Controllers
 
         #endregion
 
-        #region Admin Employee Login Actions
+        #region Admin Employee/Admin Login Actions
 
         // GET api/<LoginController>/AdminEmployeeLogin
         [HttpGet("AdminEmployeeLogin")]
         public LoginModel AdminEmployeeLogin(string userName, string password)
         {
-            var model = _context.Login.Where(x => x.RefType == Role.Employee.ToString() && x.UserName == userName && x.Password == password).FirstOrDefault();
+            var model = _context.Login.Where(x => (x.RefType == Role.Employee.ToString() || x.RefType == Role.Admin.ToString()) && x.UserName == userName && x.Password == password).FirstOrDefault();
             return model;
         }
 

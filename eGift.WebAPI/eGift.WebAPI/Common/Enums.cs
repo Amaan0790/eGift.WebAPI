@@ -23,7 +23,10 @@ namespace eGift.WebAPI.Common
         Employee = 1,
 
         [Description("Customer")]
-        Customer = 2
+        Customer = 2,
+
+        [Description("Admin")]
+        Admin = 3
     }
 
     #endregion

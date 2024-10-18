@@ -1,3 +1,4 @@
+using eGift.WebAPI.Middlewares;
 using eGift.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +28,9 @@ var app = builder.Build();
 #endregion
 
 #region Configure
+
+// Register your custom middleware here
+app.UseMiddleware<DefaultAdminUserMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
