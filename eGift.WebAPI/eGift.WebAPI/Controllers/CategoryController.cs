@@ -85,6 +85,17 @@ namespace eGift.WebAPI.Controllers
                 model.UpdatedBy = loginUserId;
                 _context.Category.Update(model);
                 _context.SaveChanges();
+
+                // Delete all sub-category of this category
+                var subCategoryList = _context.SubCategory.Where(x => !x.IsDeleted && x.CategoryId == id).ToList();
+                foreach (var subCategoryItem in subCategoryList)
+                {
+                    subCategoryItem.IsDeleted = true;
+                    subCategoryItem.UpdatedDate = DateTime.Now;
+                    subCategoryItem.UpdatedBy = loginUserId;
+                    _context.SubCategory.Update(subCategoryItem);
+                    _context.SaveChanges();
+                }
                 return id;
             }
             return 0;
