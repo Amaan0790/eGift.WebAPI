@@ -86,6 +86,17 @@ namespace eGift.WebAPI.Controllers
                 _context.Country.Update(model);
                 _context.SaveChanges();
 
+                // Delete all state of this country
+                var stateList = _context.State.Where(x => !x.IsDeleted && x.CountryId == id).ToList();
+                foreach (var stateItem in stateList)
+                {
+                    stateItem.IsDeleted = true;
+                    stateItem.UpdatedDate = DateTime.Now;
+                    stateItem.UpdatedBy = loginUserId;
+                    _context.State.Update(stateItem);
+                    _context.SaveChanges();
+                }
+
                 return id;
             }
             return 0;
