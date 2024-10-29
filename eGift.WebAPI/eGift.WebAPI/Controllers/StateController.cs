@@ -85,9 +85,33 @@ namespace eGift.WebAPI.Controllers
                 model.UpdatedBy = loginUserId;
                 _context.State.Update(model);
                 _context.SaveChanges();
+
+                // Delete all city of this state
+                var cityList = _context.City.Where(x => !x.IsDeleted && x.StateId == id).ToList();
+                foreach (var cityItem in cityList)
+                {
+                    cityItem.IsDeleted = true;
+                    cityItem.UpdatedDate = DateTime.Now;
+                    cityItem.UpdatedBy = loginUserId;
+                    _context.City.Update(cityItem);
+                    _context.SaveChanges();
+                }
+
                 return id;
             }
             return 0;
+        }
+
+        #endregion
+
+        #region Ajax Actions
+
+        // GET api/<StateController>/GetStatesByCountry/5
+        [HttpGet("GetStatesByCountry/{id}")]
+        public List<StateModel> GetStatesByCountry(int id)
+        {
+            var stateList = _context.State.Where(x => !x.IsDeleted && x.CountryId == id).ToList();
+            return stateList;
         }
 
         #endregion

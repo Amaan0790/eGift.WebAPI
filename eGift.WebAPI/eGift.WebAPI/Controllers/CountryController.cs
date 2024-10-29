@@ -95,6 +95,17 @@ namespace eGift.WebAPI.Controllers
                     stateItem.UpdatedBy = loginUserId;
                     _context.State.Update(stateItem);
                     _context.SaveChanges();
+
+                    // Delete all city of this state
+                    var cityList = _context.City.Where(x => !x.IsDeleted && x.StateId == stateItem.ID).ToList();
+                    foreach (var cityItem in cityList)
+                    {
+                        cityItem.IsDeleted = true;
+                        cityItem.UpdatedDate = DateTime.Now;
+                        cityItem.UpdatedBy = loginUserId;
+                        _context.City.Update(cityItem);
+                        _context.SaveChanges();
+                    }
                 }
 
                 return id;

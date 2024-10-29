@@ -27,7 +27,7 @@ namespace eGift.WebAPI.Models
         #region Not Mapped
 
         [NotMapped]
-        public string StateName { get; set; }
+        public string? StateName { get; set; }
 
         #endregion Not Mapped
     }
