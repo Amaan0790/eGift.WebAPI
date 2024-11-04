@@ -85,6 +85,18 @@ namespace eGift.WebAPI.Controllers
                 model.UpdatedBy = loginUserId;
                 _context.City.Update(model);
                 _context.SaveChanges();
+
+                // Delete all address of this City
+                var addressList = _context.Address.Where(x => !x.IsDeleted && x.CityId == model.ID).ToList();
+                foreach (var address in addressList)
+                {
+                    address.IsDeleted = true;
+                    address.UpdatedDate = DateTime.Now;
+                    address.UpdatedBy = loginUserId;
+                    _context.Address.Update(address);
+                    _context.SaveChanges();
+                }
+
                 return id;
             }
             return 0;
@@ -138,6 +150,16 @@ namespace eGift.WebAPI.Controllers
             return false;
         }
 
+        #endregion
+
+        #region Ajax Actions
+        // GET api/<CityController>/GetCitiesByState/5
+        [HttpGet("GetCitiesByState/{id}")]
+        public List<CityModel> GetCitiesByState(int id)
+        {
+            var cityList = _context.City.Where(x => !x.IsDeleted && x.StateId == id).ToList();
+            return cityList;
+        }
         #endregion
     }
 }

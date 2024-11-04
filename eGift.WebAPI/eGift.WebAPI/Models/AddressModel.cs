@@ -31,13 +31,13 @@ namespace eGift.WebAPI.Models
         #region Not Mapped
 
         [NotMapped]
-        public string CountryName { get; set; }
+        public string? CountryName { get; set; }
 
         [NotMapped]
-        public string StateName { get; set; }
+        public string? StateName { get; set; }
 
         [NotMapped]
-        public string CityName { get; set; }
+        public string? CityName { get; set; }
 
         #endregion Not Mapped
     }
