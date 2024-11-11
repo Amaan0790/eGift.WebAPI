@@ -85,11 +85,32 @@ namespace eGift.WebAPI.Controllers
                 model.UpdatedBy = loginUserId;
                 _context.SubCategory.Update(model);
                 _context.SaveChanges();
+
+                // Delete all product of this SubCategory
+                var productList = _context.Product.Where(x => !x.IsDeleted && x.SubCategoryId == model.ID).ToList();
+                foreach (var product in productList)
+                {
+                    product.IsDeleted = true;
+                    product.UpdatedDate = DateTime.Now;
+                    product.UpdatedBy = loginUserId;
+                    _context.Product.Update(product);
+                    _context.SaveChanges();
+                }
                 return id;
             }
             return 0;
         }
 
+        #endregion
+
+        #region Ajax Actions
+        // GET api/<SubCategoryController>/GetSubCategoriesByCategory/5
+        [HttpGet("GetSubCategoriesByCategory/{id}")]
+        public List<SubCategoryModel> GetSubCategoriesByCategory(int id)
+        {
+            var subCategoryList = _context.SubCategory.Where(x => !x.IsDeleted && x.CategoryId == id).ToList();
+            return subCategoryList;
+        }
         #endregion
 
         #region Remote Validation Actions

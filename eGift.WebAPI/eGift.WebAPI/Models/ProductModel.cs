@@ -18,7 +18,7 @@ namespace eGift.WebAPI.Models
 
         public int SubCategoryId { get; set; }
 
-        public int? QuantityPerPrice { get; set; }
+        public int? QuantityPerUnit { get; set; }
 
         [Column(TypeName = "DECIMAL(18,2)")]
         public decimal UnitPrice { get; set; }
@@ -75,28 +75,28 @@ namespace eGift.WebAPI.Models
         #region Not Mapped
 
         [NotMapped]
-        public IFormFile ImageUrl { get; set; }
+        public IFormFile? ImageUrl { get; set; }
 
         [NotMapped]
-        public IFormFile Picture1 { get; set; }
+        public IFormFile? Picture1 { get; set; }
 
         [NotMapped]
-        public IFormFile Picture2 { get; set; }
+        public IFormFile? Picture2 { get; set; }
 
         [NotMapped]
-        public IFormFile Picture3 { get; set; }
+        public IFormFile? Picture3 { get; set; }
 
         [NotMapped]
-        public IFormFile Picture4 { get; set; }
+        public IFormFile? Picture4 { get; set; }
 
         [NotMapped]
-        public string CategoryName { get; set; }
+        public string? CategoryName { get; set; }
 
         [NotMapped]
-        public string SubCategoryName { get; set; }
+        public string? SubCategoryName { get; set; }
 
         [NotMapped]
-        public string SizeName { get; set; }
+        public string? SizeName { get; set; }
 
         #endregion Not Mapped
     }
