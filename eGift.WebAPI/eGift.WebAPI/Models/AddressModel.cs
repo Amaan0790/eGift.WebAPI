@@ -39,6 +39,19 @@ namespace eGift.WebAPI.Models
         [NotMapped]
         public string? CityName { get; set; }
 
+        //[NotMapped]
+        //public string? FullAddress { get; set; }
+
+        [NotMapped]
+        // This property computes FullAddress based on other properties
+        public string? FullAddress
+        {
+            get
+            {
+                return $"{Street1}, {CityName}, {StateName}, {CountryName} - {Pincode}";
+            }
+        }
+
         #endregion Not Mapped
     }
 }

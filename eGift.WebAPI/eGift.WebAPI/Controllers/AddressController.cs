@@ -35,6 +35,41 @@ namespace eGift.WebAPI.Controllers
             _context.Database.SetCommandTimeout(TimeSpan.FromSeconds(300));
 
             var list = _context.Address.Where(x => !x.IsDeleted).ToList();
+            var cities = _context.City.Where(x => !x.IsDeleted).ToList();
+            var states = _context.State.Where(x => !x.IsDeleted).ToList();
+            var counties = _context.Country.Where(x => !x.IsDeleted).ToList();
+
+            //// Sinle join
+            //list = list.Join(cities, a => a.CityId, c => c.ID, (a, c) => new { a, c })
+            //        .Select(m =>
+            //        {
+            //            m.a.CityName = m.c.CityName;
+            //            return m.a;
+            //        }).ToList();
+
+            //// Double join
+            //list = list.Join(cities, a => a.CityId, c => c.ID, (a, c) => new { a, c })
+            //        .Join(states, ac => ac.a.StateId, s => s.ID, (ac, s) => new { ac, s })
+            //        .Select(m =>
+            //        {
+            //            m.ac.a.CityName = m.ac.c.CityName;
+            //            m.ac.a.StateName = m.s.StateName;
+            //            return m.ac.a;
+            //        }).ToList();
+
+            // Multiple join
+            list = list.Join(cities, a => a.CityId, c => c.ID, (a, c) => new { a, c })
+                    .Join(states, ac => ac.a.StateId, s => s.ID, (ac, s) => new { ac, s })
+                    .Join(counties, acs => acs.ac.a.CountryId, co => co.ID, (acs, co) => new { acs, co })
+                    .Select(m =>
+                    {
+                        m.acs.ac.a.CityName = m.acs.ac.c.CityName;
+                        m.acs.ac.a.StateName = m.acs.s.StateName;
+                        m.acs.ac.a.CountryName = m.co.CountryName;
+                        return m.acs.ac.a;
+                    }).ToList();
+
+            //list.ForEach(x => { x.FullAddress = $"{x.Street1}, {x.CityName}, {x.StateName}, {x.CountryName} - {x.Pincode}."; });
             return list;
         }
 
@@ -43,6 +78,15 @@ namespace eGift.WebAPI.Controllers
         public AddressModel Get(int id)
         {
             var model = _context.Address.Find(id);
+            if (model != null)
+            {
+                model.CityName = _context.City.Find(model.CityId)?.CityName;
+                model.StateName = _context.State.Find(model.StateId)?.StateName;
+                model.CountryName = _context.Country.Find(model.CountryId)?.CountryName;
+                
+                // For Full Address
+                //model.FullAddress = $"{model.Street1}, {model.CityName}, {model.StateName}, {model.CountryName} - {model.Pincode}.";
+            }
             return model;
         }
 
