@@ -52,7 +52,7 @@ namespace eGift.WebAPI.Models
         public string? AddressName { get; set; }
 
         [NotMapped]
-        public string? GenderName { get; set; }       
+        public string? GenderName { get; set; }
 
         [NotMapped]
         public string? RoleName { get; set; }

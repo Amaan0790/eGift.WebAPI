@@ -11,14 +11,18 @@ namespace eGift.WebAPI.Controllers
     public class ProductController : ControllerBase
     {
         #region Variables
+
         private readonly ApplicationDbContext _context;
+
         #endregion
 
         #region Constructors
+
         public ProductController(ApplicationDbContext context)
         {
             _context = context;
         }
+
         #endregion
 
         #region Product Default CRUD Actions
@@ -85,9 +89,11 @@ namespace eGift.WebAPI.Controllers
             }
             return 0;
         }
+
         #endregion
 
         #region Remote Validation Actions
+
         // For Product Name
         // GET api/<ProductController>/VerifyProductName
         [HttpGet("VerifyProductName")]
@@ -98,7 +104,7 @@ namespace eGift.WebAPI.Controllers
             if (verifyProduct != null)
             {
                 var existingProduct = _context.Product.Find(id);
-                if(existingProduct?.CategoryId == verifyProduct.CategoryId && existingProduct?.SubCategoryId == verifyProduct.SubCategoryId && existingProduct?.Name == verifyProduct.Name)
+                if (existingProduct?.CategoryId == verifyProduct.CategoryId && existingProduct?.SubCategoryId == verifyProduct.SubCategoryId && existingProduct?.Name == verifyProduct.Name)
                 {
                     return false;
                 }
@@ -106,6 +112,7 @@ namespace eGift.WebAPI.Controllers
             }
             return false;
         }
+
         #endregion
     }
 }

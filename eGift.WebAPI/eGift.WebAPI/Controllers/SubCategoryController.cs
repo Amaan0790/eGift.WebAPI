@@ -104,6 +104,7 @@ namespace eGift.WebAPI.Controllers
         #endregion
 
         #region Ajax Actions
+
         // GET api/<SubCategoryController>/GetSubCategoriesByCategory/5
         [HttpGet("GetSubCategoriesByCategory/{id}")]
         public List<SubCategoryModel> GetSubCategoriesByCategory(int id)
@@ -111,6 +112,7 @@ namespace eGift.WebAPI.Controllers
             var subCategoryList = _context.SubCategory.Where(x => !x.IsDeleted && x.CategoryId == id).ToList();
             return subCategoryList;
         }
+
         #endregion
 
         #region Remote Validation Actions

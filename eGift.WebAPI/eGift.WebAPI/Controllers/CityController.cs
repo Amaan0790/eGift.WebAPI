@@ -153,6 +153,7 @@ namespace eGift.WebAPI.Controllers
         #endregion
 
         #region Ajax Actions
+
         // GET api/<CityController>/GetCitiesByState/5
         [HttpGet("GetCitiesByState/{id}")]
         public List<CityModel> GetCitiesByState(int id)
@@ -160,6 +161,7 @@ namespace eGift.WebAPI.Controllers
             var cityList = _context.City.Where(x => !x.IsDeleted && x.StateId == id).ToList();
             return cityList;
         }
+
         #endregion
     }
 }
