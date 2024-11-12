@@ -53,7 +53,7 @@ namespace eGift.WebAPI.Middlewares
                         RefId = employeeModel.ID,
                         RefType = Role.Admin.ToString(),
                         UserName = "Admin",
-                        Password = "Test@123",
+                        Password = "Admin@123",
                         RoleId = (int)Role.Admin,
                         IsActive = true
                     };

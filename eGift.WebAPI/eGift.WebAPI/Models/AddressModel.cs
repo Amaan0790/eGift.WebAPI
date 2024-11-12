@@ -43,6 +43,7 @@ namespace eGift.WebAPI.Models
         //public string? FullAddress { get; set; }
 
         [NotMapped]
+
         // This property computes FullAddress based on other properties
         public string? FullAddress
         {

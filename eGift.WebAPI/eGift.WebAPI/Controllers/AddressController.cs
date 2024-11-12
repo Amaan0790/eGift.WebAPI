@@ -83,7 +83,7 @@ namespace eGift.WebAPI.Controllers
                 model.CityName = _context.City.Find(model.CityId)?.CityName;
                 model.StateName = _context.State.Find(model.StateId)?.StateName;
                 model.CountryName = _context.Country.Find(model.CountryId)?.CountryName;
-                
+
                 // For Full Address
                 //model.FullAddress = $"{model.Street1}, {model.CityName}, {model.StateName}, {model.CountryName} - {model.Pincode}.";
             }

@@ -569,7 +569,7 @@ namespace eGift.WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(500)");
 
-                    b.Property<int?>("QuantityPerPrice")
+                    b.Property<int?>("QuantityPerUnit")
                         .HasColumnType("int");
 
                     b.Property<string>("ShortDescription")

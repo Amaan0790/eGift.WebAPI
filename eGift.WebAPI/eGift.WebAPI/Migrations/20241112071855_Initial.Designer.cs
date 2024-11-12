@@ -12,8 +12,8 @@ using eGift.WebAPI.Models;
 namespace eGift.WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240919125651_UpdateNullable")]
-    partial class UpdateNullable
+    [Migration("20241112071855_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -336,7 +336,6 @@ namespace eGift.WebAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(500)");
 
                     b.Property<string>("GenderName")
@@ -365,16 +364,7 @@ namespace eGift.WebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastLogInDate")
@@ -396,12 +386,6 @@ namespace eGift.WebAPI.Migrations
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -426,7 +410,7 @@ namespace eGift.WebAPI.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Discount")
+                    b.Property<decimal?>("Discount")
                         .HasColumnType("DECIMAL(18,2)");
 
                     b.Property<bool>("IsDeleted")
@@ -444,7 +428,7 @@ namespace eGift.WebAPI.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Tax")
+                    b.Property<decimal?>("Tax")
                         .HasColumnType("DECIMAL(18,2)");
 
                     b.Property<decimal>("UnitPrice")
@@ -588,7 +572,7 @@ namespace eGift.WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(500)");
 
-                    b.Property<int?>("QuantityPerPrice")
+                    b.Property<int?>("QuantityPerUnit")
                         .HasColumnType("int");
 
                     b.Property<string>("ShortDescription")
