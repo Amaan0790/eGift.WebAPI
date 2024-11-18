@@ -113,6 +113,17 @@ namespace eGift.WebAPI.Controllers
 
         #endregion
 
+        #region Store Customer Login Actions
+
+        [HttpGet("CusotmerLogin")]
+        public LoginModel CusotmerLogin(string userName, string password)
+        {
+            var model = _context.Login.Where(x => x.RefType == Role.Customer.ToString() && x.UserName == userName && x.Password == password).FirstOrDefault();
+            return model;
+        }
+
+        #endregion
+
         #region Last Login Actions
 
         // POST api/<LoginController>/UpdateLastLogin
