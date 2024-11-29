@@ -35,6 +35,11 @@ namespace eGift.WebAPI.Controllers
             _context.Database.SetCommandTimeout(TimeSpan.FromSeconds(600));
 
             var list = _context.Product.Where(x => !x.IsDeleted).ToList();
+            foreach (var product in list)
+            {
+                product.CategoryName = _context.Category.Find(product.CategoryId).CategoryName;
+                product.SubCategoryName = _context.SubCategory.Find(product.SubCategoryId).SubCategoryName;
+            }
             return list;
         }
 
