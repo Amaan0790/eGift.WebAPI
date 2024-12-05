@@ -43,10 +43,10 @@ namespace eGift.WebAPI.Models
         #region Not Mapped
 
         [NotMapped]
-        public string StatusName { get; set; }
+        public string? StatusName { get; set; }
 
         [NotMapped]
-        public string CustomerName { get; set; }
+        public string? CustomerName { get; set; }
 
         #endregion Not Mapped
     }
