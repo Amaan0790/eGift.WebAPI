@@ -30,5 +30,36 @@ namespace eGift.WebAPI.Models
         public decimal NetAmount { get; set; }
 
         #endregion Data Models
+
+        #region Not Mapped
+
+        [NotMapped]
+        public string? ProductName { get; set; }
+
+        [NotMapped]
+        public byte[]? ProductImageData { get; set; }
+
+        [NotMapped]
+        public string? OrderNumber { get; set; }
+
+        [NotMapped]
+        public string? Notes { get; set; }
+
+        [NotMapped]
+        public DateTime? DispatchedDate { get; set; }
+
+        [NotMapped]
+        public DateTime? ShippedDate { get; set; }
+
+        [NotMapped]
+        public DateTime? DeliveryDate { get; set; }
+
+        [NotMapped]
+        public DateTime? CancelDate { get; set; }
+
+        [NotMapped]
+        public int StatusId { get; set; }
+
+        #endregion
     }
 }
