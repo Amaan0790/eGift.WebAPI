@@ -48,6 +48,12 @@ namespace eGift.WebAPI.Models
         [NotMapped]
         public string? CustomerName { get; set; }
 
+        [NotMapped]
+        public string? MobileNumber { get; set; }
+
+        [NotMapped]
+        public string? Address { get; set; }
+
         #endregion Not Mapped
     }
 }

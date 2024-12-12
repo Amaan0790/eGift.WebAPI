@@ -1,13 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace eGift.WebAPI.Models.RequestModels
+﻿namespace eGift.WebAPI.Models.ResponseModels
 {
-    public class OrderRequestModel
+    public class OrderResponseModel
     {
         #region Constructors
 
-        public OrderRequestModel()
+        public OrderResponseModel()
         {
             OrderModel = new OrderModel();
             OrderDetailList = new List<OrderDetailsModel>();
@@ -19,7 +16,7 @@ namespace eGift.WebAPI.Models.RequestModels
 
         public OrderModel OrderModel { get; set; }
 
-        #endregion Data Models
+        #endregion
 
         #region Reference List View Models
 
