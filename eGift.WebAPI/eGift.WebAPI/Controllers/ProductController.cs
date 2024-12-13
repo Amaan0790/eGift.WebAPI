@@ -48,6 +48,8 @@ namespace eGift.WebAPI.Controllers
         public ProductModel Get(int id)
         {
             var model = _context.Product.Find(id);
+            model.CategoryName = _context.Category.Find(model.CategoryId).CategoryName;
+            model.SubCategoryName = _context.SubCategory.Find(model.SubCategoryId).SubCategoryName;
             return model;
         }
 
