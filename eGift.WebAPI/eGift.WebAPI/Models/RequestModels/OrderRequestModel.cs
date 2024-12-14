@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace eGift.WebAPI.Models.RequestModels
+﻿namespace eGift.WebAPI.Models.RequestModels
 {
     public class OrderRequestModel
     {
